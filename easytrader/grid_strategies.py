@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import abc
 import io
+import re
 import tempfile
 from io import StringIO
 from typing import TYPE_CHECKING, Dict, List, Optional
@@ -212,4 +213,8 @@ class Xls(BaseStrategy):
             dtype=self._trader.config.GRID_DTYPE,
             na_filter=False,
         )
-        return df.to_dict("records")
+        data = df.to_dict("records")
+        for i in range(len(data)):
+            data[i]['证券代码'] = "".join(re.findall("[A-Za-z0-9]+", data[i]['证券代码']))
+            data[i]['股东代码'] = "".join(re.findall("[A-Za-z0-9]+", data[i]['股东代码']))
+        return data
