@@ -182,3 +182,13 @@ class HTZQ(CommonConfig):
 
 class PAZQ(CommonConfig):
     DEFAULT_EXE_PATH = r"c:\\平安证券智投版\\xiadan.exe"
+
+    BALANCE_CONTROL_ID_GROUP = {
+        "资金余额": 1012,
+        "冻结资金": 1013,
+        "可用金额": 1016,
+        "可取金额": 1017,
+        "股票市值": 1014,
+        "总资产": 1015,
+        "持仓盈亏": 1027,
+    }
