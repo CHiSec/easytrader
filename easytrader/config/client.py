@@ -14,6 +14,8 @@ def create(broker):
         return WK
     if broker == "htzq":
         return HTZQ
+    if broker == "pazq":
+        return PAZQ
     raise NotImplementedError
 
 
@@ -176,3 +178,7 @@ class HTZQ(CommonConfig):
     }
 
     AUTO_IPO_NUMBER = '可申购数量'
+
+
+class PAZQ(CommonConfig):
+    DEFAULT_EXE_PATH = r"c:\\平安证券智投版\\xiadan.exe"

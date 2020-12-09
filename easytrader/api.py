@@ -63,6 +63,11 @@ def use(broker, debug=False, **kwargs):
 
         return GFClientTrader()
 
+    if broker.lower() in ["pazq", "平安证券客户端"]:
+        from .pazq_clienttrader import PAZQClientTrader
+
+        return PAZQClientTrader()
+
     if broker.lower() in ["ths", "同花顺客户端"]:
         from .clienttrader import ClientTrader
 
