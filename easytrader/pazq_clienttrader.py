@@ -56,7 +56,7 @@ class PAZQClientTrader(clienttrader.BaseLoginClientTrader):
                     self._app.top_window()["用户登录Button"].click()
                     # detect login is success or not
                     try:
-                        self._app.top_window().wait_not("exists", 5)
+                        self._app.top_window().wait_not("exists", 3)
                         break
 
                     # pylint: disable=broad-except
@@ -68,7 +68,7 @@ class PAZQClientTrader(clienttrader.BaseLoginClientTrader):
                     pass
 
             self._app = pywinauto.Application().connect(
-                path=self._run_exe_path(exe_path), timeout=10
+                path=self._run_exe_path(exe_path), timeout=5
             )
         self._main = self._app.window(title_re="""{title}.*""".format(title=self._config.TITLE))
         self.close_pop_dialog()
@@ -76,7 +76,7 @@ class PAZQClientTrader(clienttrader.BaseLoginClientTrader):
     def _handle_verify_code(self):
         control = self._app.top_window().window(control_id=0x5db)
         control.click()
-        time.sleep(0.2)
+        time.sleep(0.1)
         file_path = tempfile.mktemp() + ".jpg"
         control.capture_as_image().save(file_path)
         time.sleep(0.2)

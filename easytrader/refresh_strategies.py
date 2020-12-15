@@ -37,7 +37,7 @@ class IRefreshStrategy(abc.ABC):
 class Switch(IRefreshStrategy):
     """通过切换菜单栏刷新"""
 
-    def __init__(self, sleep: float = 0.1):
+    def __init__(self, sleep: float = 0.02):
         self.sleep = sleep
 
     def refresh(self):

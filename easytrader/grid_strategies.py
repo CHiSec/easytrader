@@ -185,7 +185,7 @@ class Xls(BaseStrategy):
         while count > 0:
             if self._trader.is_exist_pop_dialog():
                 break
-            self._trader.wait(0.2)
+            self._trader.wait(0.01)
             count -= 1
 
         temp_path = tempfile.mktemp(suffix=".xls", dir=self.tmp_folder)
@@ -193,13 +193,13 @@ class Xls(BaseStrategy):
 
         # alt+s保存，alt+y替换已存在的文件
         self._trader.app.top_window().Edit1.set_edit_text(temp_path)
-        self._trader.wait(0.1)
+        self._trader.wait(0.02)
         self._trader.app.top_window().type_keys("%{s}%{y}", set_foreground=False)
         # Wait until file save complete otherwise pandas can not find file
-        self._trader.wait(0.2)
+        self._trader.wait(0.01)
         if self._trader.is_exist_pop_dialog():
             self._trader.app.top_window().Button2.click()
-            self._trader.wait(0.2)
+            # self._trader.wait(0.01)
 
         return self._format_grid_data(temp_path)
 
