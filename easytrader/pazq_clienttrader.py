@@ -76,10 +76,10 @@ class PAZQClientTrader(clienttrader.BaseLoginClientTrader):
     def _handle_verify_code(self):
         control = self._app.top_window().window(control_id=0x5db)
         control.click()
-        time.sleep(0.1)
+        time.sleep(0.5)
         file_path = tempfile.mktemp() + ".jpg"
         control.capture_as_image().save(file_path)
-        time.sleep(0.2)
+        time.sleep(0.5)
         vcode = recognize_verify_code(file_path, "pazq")
         if os.path.exists(file_path):
             os.remove(file_path)

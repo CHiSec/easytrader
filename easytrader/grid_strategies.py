@@ -215,6 +215,11 @@ class Xls(BaseStrategy):
         )
         data = df.to_dict("records")
         for i in range(len(data)):
-            data[i]['证券代码'] = "".join(re.findall("[A-Za-z0-9]+", data[i]['证券代码']))
-            data[i]['股东代码'] = "".join(re.findall("[A-Za-z0-9]+", data[i]['股东代码']))
+
+            if data[i].get('证券代码'):
+                data[i]['证券代码'] = "".join(re.findall("[A-Za-z0-9]+", data[i]['证券代码']))
+            if data[i].get('股东代码'):
+                data[i]['股东代码'] = "".join(re.findall("[A-Za-z0-9]+", data[i]['股东代码']))
+            if data[i].get('合同编号'):
+                data[i]['合同编号'] = "".join(re.findall("[A-Za-z0-9]+", data[i]['合同编号']))
         return data
