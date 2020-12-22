@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-class TradeError(IOError):
-    pass
+class TradeError(Exception):
+    def __init__(self, result):
+        super(TradeError, self).__init__()
+        self.result = result
 
 
 class NotLoginError(Exception):

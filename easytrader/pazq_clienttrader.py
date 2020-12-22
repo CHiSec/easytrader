@@ -70,7 +70,7 @@ class PAZQClientTrader(clienttrader.BaseLoginClientTrader):
             self._app = pywinauto.Application().connect(
                 path=self._run_exe_path(exe_path), timeout=5
             )
-        self._main = self._app.window(title_re="""{title}.*""".format(title=self._config.TITLE))
+        self._main = self._app.window(title_re="""{title}""".format(title=self._config.TITLE))
         self.close_pop_dialog()
 
     def _handle_verify_code(self):

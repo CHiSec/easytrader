@@ -451,7 +451,7 @@ class ClientTrader(IClientTrader):
         self._type_edit_control_keys(self._config.TRADE_SECURITY_CONTROL_ID, code)
 
         # wait security input finish
-        self.wait(0.02)
+        self.wait(0.03)
 
         # # 设置交易所
         # if security.lower().startswith("sz"):
@@ -465,6 +465,7 @@ class ClientTrader(IClientTrader):
             self._config.TRADE_PRICE_CONTROL_ID,
             easyutils.round_price_by_code(price, code),
         )
+        self.wait(0.03)
         self._type_edit_control_keys(
             self._config.TRADE_AMOUNT_CONTROL_ID, str(int(amount))
         )
@@ -516,7 +517,7 @@ class ClientTrader(IClientTrader):
             item.collapse()
 
     @perf_clock
-    def _switch_left_menus(self, path, sleep=0.02):
+    def _switch_left_menus(self, path, sleep=0.03):
         self.close_pop_dialog()
         self._get_left_menus_handle().get_item(path).select()
         self._app.top_window().type_keys('{ESC}')
@@ -574,6 +575,7 @@ class ClientTrader(IClientTrader):
             result = handler.handle(title)
             if result:
                 return result
+            self.wait(0.25)
         return {"message": "success"}
 
 

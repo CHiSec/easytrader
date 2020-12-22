@@ -45,7 +45,7 @@ class PopDialogHandler:
         try:
             self._app.top_window()["确定"].click()
         except Exception as ex:
-            self._app.Window_(best_match="Dialog", top_level_only=True).ChildWindow(
+            self._app.window(best_match="Dialog", top_level_only=True).child_window(
                 best_match="确定"
             ).click()
 
@@ -92,7 +92,6 @@ class TradePopDialogHandler(PopDialogHandler):
                 return {"entrust_no": entrust_no}
 
             self._submit_by_click()
-            time.sleep(0.05)
             raise exceptions.TradeError(content)
         self._close()
         return None
