@@ -68,6 +68,11 @@ def use(broker, debug=False, **kwargs):
 
         return PAZQClientTrader()
 
+    if broker.lower() in ["pazq_remote", "平安證券遠程"]:
+        from .pazq_remote_trader import PAZQRemoteTrader
+
+        return PAZQRemoteTrader()
+
     if broker.lower() in ["ths", "同花顺客户端"]:
         from .clienttrader import ClientTrader
 
