@@ -120,6 +120,6 @@ class PAZQRemoteTrader(IRemoteTrader):
 
     def cancel_entrust(self, entrust_no: str):
         data = self._api_post("cancel_entrust", {'entrust_no': entrust_no})
-        if data['status'] == 'success' and '成功' not in data['data']['message']:
+        if data['status'] == 'success' and 'success' not in data['data']['message']:
             data['status'] = 'fail'
         return data
